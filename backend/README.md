@@ -28,3 +28,5 @@ There is no separate studio ORM in Django; use Django admin or a PostgreSQL clie
 ## Render production
 
 Set `NODE_ENV=production`, `SECRET_KEY`, `ALLOWED_HOSTS`, and `CORS_ALLOWED_ORIGINS`. Render supplies `DATABASE_URL`; it must be a PostgreSQL URL. The Render build and start commands run only pending `migrate` operations before serving `config.wsgi:application` with Gunicorn. Existing data is preserved.
+
+The root `render.yaml` also defines the frontend static service. Set its `VITE_API_URL` to the public backend URL with the `/api` suffix. Its rewrite rule sends direct requests such as `/admin` and `/admin/companies` to `index.html`, allowing React Router to handle them instead of returning a host-level 404.
