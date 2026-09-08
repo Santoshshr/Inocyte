@@ -10,7 +10,7 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const isSuperAdmin = user?.role === 'SUPERADMIN';
 
   const navigation = [
@@ -20,10 +20,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
     ...(isSuperAdmin ? [{ name: 'Users', href: '/Inocyte_Admin_Panel/users', icon: Users }] : []),
     { name: 'Settings', href: '/Inocyte_Admin_Panel/settings', icon: Settings },
   ];
-
-  const handleLogout = async () => {
-    await logout();
-  };
 
   const content = (
     <>
