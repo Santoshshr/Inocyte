@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("Inocyte_Admin_Panel/", admin.site.urls),
     path("api/auth/", include("apps.accounts.urls")),
     path("api/users/", include("apps.accounts.urls_users")),
     path("api/companies/", include("apps.companies.urls")),

@@ -33,7 +33,7 @@ function App() {
 
             {/* Protected Admin Routes */}
             <Route
-              path="/admin"
+              path="/Inocyte_Admin_Panel"
               element={
                 <ProtectedRoute>
                   <DashboardLayout />

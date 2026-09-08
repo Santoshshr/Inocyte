@@ -8,7 +8,7 @@ export const AuthLayout: React.FC = () => {
   if (isLoading) return null;
 
   if (isAuthenticated) {
-    return <Navigate to="/admin" replace />;
+    return <Navigate to="/Inocyte_Admin_Panel" replace />;
   }
 
   return (

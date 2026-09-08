@@ -70,7 +70,7 @@ export const DashboardPage: React.FC = () => {
         <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
           <h2 className="text-base font-semibold text-gray-900">Recent Inquiries</h2>
           <Link
-            to="/admin/inquiries"
+            to="/Inocyte_Admin_Panel/inquiries"
             className="flex items-center gap-1 text-sm font-medium text-brand-primary hover:underline"
           >
             View all

@@ -23,7 +23,7 @@ services:
     name: inocyte-frontend
     runtime: static
     rootDir: frontend
-    buildCommand: npm ci && npm run build && cp dist/index.html dist/404.html && cp dist/index.html dist/login && mkdir -p dist/admin && cp dist/index.html dist/admin/index.html
+    buildCommand: npm ci && npm run build
     staticPublishPath: dist
     routes:
       - type: rewrite

@@ -10,16 +10,20 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const isSuperAdmin = user?.role === 'SUPERADMIN';
 
   const navigation = [
-    { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-    { name: 'Companies', href: '/admin/companies', icon: Building2 },
-    { name: 'Inquiries', href: '/admin/inquiries', icon: MessageSquare },
-    ...(isSuperAdmin ? [{ name: 'Users', href: '/admin/users', icon: Users }] : []),
-    { name: 'Settings', href: '/admin/settings', icon: Settings },
+    { name: 'Dashboard', href: '/Inocyte_Admin_Panel', icon: LayoutDashboard },
+    { name: 'Companies', href: '/Inocyte_Admin_Panel/companies', icon: Building2 },
+    { name: 'Inquiries', href: '/Inocyte_Admin_Panel/inquiries', icon: MessageSquare },
+    ...(isSuperAdmin ? [{ name: 'Users', href: '/Inocyte_Admin_Panel/users', icon: Users }] : []),
+    { name: 'Settings', href: '/Inocyte_Admin_Panel/settings', icon: Settings },
   ];
+
+  const handleLogout = async () => {
+    await logout();
+  };
 
   const content = (
     <>
@@ -39,7 +43,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
             <NavLink
               key={item.name}
               to={item.href}
-              end={item.href === '/admin'}
+              end={item.href === '/Inocyte_Admin_Panel'}
               onClick={onClose}
               className={({ isActive }) =>
                 cn(
