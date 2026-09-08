@@ -18,7 +18,13 @@ if IS_PRODUCTION and not SECRET_KEY:
     raise ImproperlyConfigured("SECRET_KEY must be set in production.")
 SECRET_KEY = SECRET_KEY or "django-insecure-local-development-only"
 DEBUG = False if IS_PRODUCTION else config("DEBUG", default=True, cast=bool)
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost").split(",")
+_env_hosts = config("ALLOWED_HOSTS", default="localhost").split(",")
+ALLOWED_HOSTS = list(set(_env_hosts + [
+    "inocyte-h39q.onrender.com",
+    "inocyte.com",
+    "www.inocyte.com",
+]))
+ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
 
 # ── Apps ──────────────────────────────────────────────
 INSTALLED_APPS = [
@@ -134,9 +140,15 @@ SIMPLE_JWT = {
 }
 
 # ── CORS ──────────────────────────────────────────────
-CORS_ALLOWED_ORIGINS = config(
-    "CORS_ALLOWED_ORIGINS", default="http://localhost:5173"
-).split(",")
+# We read from env vars, but always ensure our known production domains are included
+_env_cors = config("CORS_ALLOWED_ORIGINS", default="http://localhost:5173").split(",")
+CORS_ALLOWED_ORIGINS = list(set(_env_cors + [
+    "https://inocyte.com",
+    "https://www.inocyte.com",
+]))
+# Remove empty strings if they exist
+CORS_ALLOWED_ORIGINS = [origin.strip() for origin in CORS_ALLOWED_ORIGINS if origin.strip()]
+
 CORS_ALLOW_CREDENTIALS = True
 
 # ── i18n ──────────────────────────────────────────────
@@ -154,9 +166,12 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # ── CSRF Trusted Origins (required by Django 4+ for cross-origin POST) ─
-CSRF_TRUSTED_ORIGINS = config(
-    "CSRF_TRUSTED_ORIGINS", default="http://localhost:5173"
-).split(",")
+_env_csrf = config("CSRF_TRUSTED_ORIGINS", default="http://localhost:5173").split(",")
+CSRF_TRUSTED_ORIGINS = list(set(_env_csrf + [
+    "https://inocyte.com",
+    "https://www.inocyte.com",
+]))
+CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in CSRF_TRUSTED_ORIGINS if origin.strip()]
 
 # ── Production Security ───────────────────────────────
 if IS_PRODUCTION:
