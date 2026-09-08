@@ -20,7 +20,7 @@ SECRET_KEY = SECRET_KEY or "django-insecure-local-development-only"
 DEBUG = False if IS_PRODUCTION else config("DEBUG", default=True, cast=bool)
 _env_hosts = config("ALLOWED_HOSTS", default="localhost").split(",")
 ALLOWED_HOSTS = list(set(_env_hosts + [
-    "inocyte-h39q.onrender.com",
+    "inocyte-web.onrender.com",
     "inocyte.com",
     "www.inocyte.com",
 ]))
