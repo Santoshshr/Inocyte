@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.db import DatabaseError
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -45,37 +46,50 @@ class LoginView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        serializer = LoginSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        # Django's authenticate() silently rejects inactive users (returns None)
-        # before password checking even happens, which would make the is_active
-        # check below unreachable. Look the user up directly so "wrong password"
-        # and "deactivated account" stay distinguishable.
         try:
-            user = User.objects.get(email__iexact=serializer.validated_data["email"])
-        except User.DoesNotExist:
-            user = None
+            serializer = LoginSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
 
-        if user is None or not user.check_password(serializer.validated_data["password"]):
-            return Response(
-                {"status": "error", "message": "Invalid email or password."},
-                status=status.HTTP_401_UNAUTHORIZED,
-            )
-        if not user.is_active:
-            return Response(
-                {"status": "error", "message": "Account is deactivated."},
-                status=status.HTTP_403_FORBIDDEN,
-            )
+            # Django's authenticate() silently rejects inactive users (returns None)
+            # before password checking even happens, which would make the is_active
+            # check below unreachable. Look the user up directly so "wrong password"
+            # and "deactivated account" stay distinguishable.
+            try:
+                user = User.objects.get(email__iexact=serializer.validated_data["email"])
+            except User.DoesNotExist:
+                user = None
 
-        refresh = RefreshToken.for_user(user)
-        return Response({
-            "user": UserSerializer(user).data,
-            "tokens": {
-                "access": str(refresh.access_token),
-                "refresh": str(refresh),
-            },
-        })
+            if user is None or not user.check_password(serializer.validated_data["password"]):
+                return Response(
+                    {"status": "error", "message": "Invalid email or password."},
+                    status=status.HTTP_401_UNAUTHORIZED,
+                )
+            if not user.is_active:
+                return Response(
+                    {"status": "error", "message": "Account is deactivated."},
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                "user": UserSerializer(user).data,
+                "tokens": {
+                    "access": str(refresh.access_token),
+                    "refresh": str(refresh),
+                },
+            })
+        except ValidationError:
+            raise
+        except (DatabaseError, OSError) as exc:
+            return Response(
+                {"status": "error", "message": "Login is temporarily unavailable. Please try again in a moment."},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
+        except Exception:
+            return Response(
+                {"status": "error", "message": "An unexpected error occurred while logging in."},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
 
 
 class LogoutView(APIView):

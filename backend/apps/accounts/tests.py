@@ -1,4 +1,7 @@
+from unittest.mock import patch
+
 from django.contrib.auth import get_user_model
+from django.db import OperationalError
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -24,6 +27,13 @@ class LoginTests(APITestCase):
     def test_login_wrong_password_is_401(self):
         res = self.client.post("/api/auth/login/", {"email": "super@inocyte.test", "password": "wrong"})
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @patch("apps.accounts.views.User.objects.get", side_effect=OperationalError("database unavailable"))
+    def test_login_database_error_is_503(self, _mock_get):
+        res = self.client.post("/api/auth/login/", {"email": "super@inocyte.test", "password": "Str0ng-Passw0rd!"})
+        self.assertEqual(res.status_code, status.HTTP_503_SERVICE_UNAVAILABLE)
+        self.assertEqual(res.data["status"], "error")
+        self.assertIn("unavailable", str(res.data["message"]).lower())
 
     def test_login_inactive_user_is_403(self):
         make_user("inactive@inocyte.test", User.Role.SUB_ADMIN, is_active=False)
