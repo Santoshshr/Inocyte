@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { Upload, X, ExternalLink, Trash2, Pencil, Plus, Building2, Search, ArrowRight } from 'lucide-react';
+import { Upload, X, Trash2, Pencil, Plus, Building2, Search, ArrowRight } from 'lucide-react';
 import { companyService } from '../../services/company.service';
 import { Button } from '../../components/ui/Button';
 import { Modal } from '../../components/ui/Modal';
