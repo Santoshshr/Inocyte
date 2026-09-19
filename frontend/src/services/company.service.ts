@@ -14,14 +14,14 @@ export const companyService = {
 
   createCompany: async (formData: FormData): Promise<Company> => {
     const { data } = await apiClient.post('/companies/', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
+      headers: { 'Content-Type': undefined }
     });
     return data;
   },
 
   updateCompany: async (id: string, formData: FormData): Promise<Company> => {
     const { data } = await apiClient.patch(`/companies/${id}/`, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
+      headers: { 'Content-Type': undefined }
     });
     return data;
   },
