@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /Inocyte_Admin_Panel
+
+Sitemap: https://inocyte.com/sitemap.xml
