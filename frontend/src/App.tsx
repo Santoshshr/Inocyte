@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 
@@ -17,11 +18,27 @@ import { LandingPage } from './pages/LandingPage';
 
 const queryClient = new QueryClient();
 
+function RouteWatcher() {
+  const location = useLocation();
+  useEffect(() => {
+    const isPublic = location.pathname === '/' || location.pathname === '/index.html' || location.pathname === '/landing.html';
+    if (isPublic) {
+      document.documentElement.classList.remove('admin-mode');
+      document.body.classList.remove('admin-mode');
+    } else {
+      document.documentElement.classList.add('admin-mode');
+      document.body.classList.add('admin-mode');
+    }
+  }, [location]);
+  return null;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <BrowserRouter>
+          <RouteWatcher />
           <Routes>
             {/* Public Landing Page */}
             <Route path="/" element={<LandingPage />} />
