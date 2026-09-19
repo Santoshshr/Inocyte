@@ -30,10 +30,10 @@ export const AuthLayout: React.FC = () => {
         
         <div className="relative z-10 mb-20">
           <h2 className="text-4xl lg:text-5xl font-heading font-semibold text-white mb-6 leading-tight">
-            Advanced medical<br/>technology management.
+            Powering the future<br/>of our business.
           </h2>
           <p className="text-gray-300 text-lg max-w-md leading-relaxed">
-            Securely access your administrative dashboard to manage clinical data, track inquiries, and oversee company operations.
+            Securely access your Inocyte administration portal to manage operations, monitor activities, and oversee your organization.
           </p>
         </div>
       </div>
@@ -50,7 +50,7 @@ export const AuthLayout: React.FC = () => {
           
           <div className="mb-8 text-center lg:text-left">
             <h2 className="text-3xl font-semibold text-gray-900 font-heading">Welcome back</h2>
-            <p className="mt-2 text-sm text-gray-600">Please enter your credentials to continue.</p>
+            <p className="mt-2 text-sm text-gray-600">Sign in to your Inocyte account to continue.</p>
           </div>
           
           <div className="bg-white lg:bg-transparent py-8 px-6 lg:p-0 shadow-sm sm:rounded-xl sm:px-10 lg:shadow-none lg:rounded-none border border-gray-100 lg:border-none">
