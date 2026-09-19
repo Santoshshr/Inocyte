@@ -27,10 +27,13 @@ services:
     staticPublishPath: dist
     routes:
       - type: rewrite
+        source: /
+        destination: /landing.html
+      - type: rewrite
         source: /login
         destination: /index.html
       - type: rewrite
-        source: /admin/*
+        source: /Inocyte_Admin_Panel/*
         destination: /index.html
       - type: rewrite
         source: /*
