@@ -20,7 +20,8 @@ SECRET_KEY = SECRET_KEY or "django-insecure-local-development-only"
 DEBUG = False if IS_PRODUCTION else config("DEBUG", default=True, cast=bool)
 _env_hosts = config("ALLOWED_HOSTS", default="localhost").split(",")
 ALLOWED_HOSTS = list(set(_env_hosts + [
-    "inocyte-web.onrender.com",
+    "inocyte-api.onrender.com",
+    "inocyte-frontend.onrender.com",
     "inocyte.com",
     "www.inocyte.com",
 ]))
@@ -143,6 +144,7 @@ SIMPLE_JWT = {
 # We read from env vars, but always ensure our known production domains are included
 _env_cors = config("CORS_ALLOWED_ORIGINS", default="http://localhost:5173").split(",")
 CORS_ALLOWED_ORIGINS = list(set(_env_cors + [
+    "https://inocyte-frontend.onrender.com",
     "https://inocyte.com",
     "https://www.inocyte.com",
 ]))
@@ -168,6 +170,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # ── CSRF Trusted Origins (required by Django 4+ for cross-origin POST) ─
 _env_csrf = config("CSRF_TRUSTED_ORIGINS", default="http://localhost:5173").split(",")
 CSRF_TRUSTED_ORIGINS = list(set(_env_csrf + [
+    "https://inocyte-frontend.onrender.com",
     "https://inocyte.com",
     "https://www.inocyte.com",
 ]))
