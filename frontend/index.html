@@ -1275,104 +1275,137 @@
 
     /* Clickable venture card */
     .venture-card {
+      position: relative;
       display: flex;
       flex-direction: column;
-      background: linear-gradient(160deg, var(--v-a, rgba(59,85,230,.06)) 0%, var(--v-b, rgba(59,85,230,.015)) 45%, #fff 75%);
-      border: 1.5px solid #e5e8ef;
+      aspect-ratio: 4/3;
       border-radius: 18px;
       overflow: hidden;
       text-decoration: none;
-      color: inherit;
-      box-shadow: 0 2px 12px rgba(30,40,80,.05);
-      transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s;
+      background: #111827;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: transform .3s ease, box-shadow .3s ease;
       cursor: pointer;
     }
     .venture-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 16px 48px -12px rgba(30,40,80,.18);
-      border-color: #c2caee;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
-    .venture-card-logo {
-      height: 150px;
+    .venture-card-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    .venture-card-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .venture-card:hover .venture-card-bg img,
+    .venture-card:hover .vc-fallback {
+      transform: scale(1.05);
+    }
+    .vc-fallback {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(59,130,246,0.8), #111827);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      transition: transform .5s ease;
     }
-    .venture-card-logo img {
-      max-height: 90px;
-      max-width: 80%;
-      object-fit: contain;
-    }
-    .venture-card-logo .venture-initial {
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
-      background: var(--navy-900);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
+    .vc-fallback span {
+      font-size: 4rem;
       font-weight: 800;
-      font-family: 'Manrope', sans-serif;
+      color: rgba(255, 255, 255, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .venture-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #111827 0%, rgba(17,24,39,0.6) 40%, transparent 100%);
+      opacity: 0.9;
+      z-index: 2;
+      transition: opacity .3s ease;
+    }
+    .venture-card:hover .venture-card-overlay {
+      opacity: 1;
     }
     .venture-card-body {
-      padding: 22px 24px 24px;
+      position: relative;
+      z-index: 3;
+      padding: 20px;
       flex: 1;
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
     }
     .venture-card-status {
       display: inline-flex;
       align-self: flex-start;
       border-radius: 20px;
-      padding: 3px 10px;
-      font-size: .72rem;
+      padding: 4px 10px;
+      font-size: .7rem;
       font-weight: 700;
-      letter-spacing: .04em;
+      letter-spacing: .05em;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .venture-card-status.active   { background: #ecfdf5; color: #059669; }
-    .venture-card-status.upcoming { background: #fffbeb; color: #d97706; }
+    .venture-card-status.upcoming { background: #3B55E6; color: #ffffff; }
     .venture-card-name {
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       font-weight: 800;
-      color: var(--navy-900);
+      color: #ffffff;
       font-family: 'Manrope', sans-serif;
       margin-bottom: 4px;
-    }
-    .venture-card-tagline {
-      font-size: .83rem;
-      font-weight: 600;
-      color: #3B55E6;
-      margin-bottom: 10px;
+      line-height: 1.2;
     }
     .venture-card-desc {
       font-size: .85rem;
-      color: #5b6480;
-      line-height: 1.6;
-      flex: 1;
+      color: #d1d5db;
+      line-height: 1.5;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      margin-bottom: 16px;
     }
-    .venture-card-arrow {
-      margin-top: 18px;
-      font-size: .82rem;
-      font-weight: 600;
-      color: #3B55E6;
+    .venture-card-footer {
       display: flex;
       align-items: center;
-      gap: 5px;
+      justify-content: space-between;
+      margin-top: 4px;
     }
-    .venture-card-arrow svg {
-      transition: transform .2s;
+    .venture-card-link {
+      font-size: .85rem;
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .2s;
     }
-    .venture-card:hover .venture-card-arrow svg {
-      transform: translateX(4px);
+    .venture-card:hover .venture-card-link {
+      color: #3B55E6;
+    }
+    .venture-card-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      transition: background .2s, color .2s;
+    }
+    .venture-card:hover .venture-card-btn {
+      background: #3B55E6;
     }
 
     /* Skeleton loader */
@@ -2341,28 +2374,26 @@
             var logoUrl = c.logo && /^https?:\/\//.test(c.logo)
               ? c.logo
               : (c.logo ? (API_BASE ? API_BASE : '') + c.logo : '');
-            var logoHtml = logoUrl
-              ? '<img src="' + logoUrl + '" alt="' + c.name + ' logo" loading="eager" width="56" height="56" />'
-              : '<div class="venture-initial">' + c.name.charAt(0).toUpperCase() + '</div>';
+            var bgHtml = logoUrl
+              ? '<img src="' + logoUrl + '" alt="' + c.name + ' logo" loading="lazy" />'
+              : '<div class="vc-fallback"><span>' + c.name.charAt(0).toUpperCase() + '</span></div>';
             var statusBadge = (c.status === 'active' || c.status === 'upcoming')
               ? '<span class="venture-card-status ' + c.status + '">' + c.status + '</span>'
               : '';
-            var tagline = c.tagline
-              ? '<p class="venture-card-tagline">' + c.tagline + '</p>' : '';
-            var desc = c.description
-              ? '<p class="venture-card-desc">' + c.description + '</p>' : '';
+            var descText = c.tagline || c.description || 'No description provided.';
             var url = c.website_url || '#';
             return (
               '<a class="venture-card" href="' + url + '" target="_blank" rel="noopener noreferrer">' +
-                '<div class="venture-card-logo">' + logoHtml + '</div>' +
+                '<div class="venture-card-bg">' + bgHtml + '</div>' +
+                '<div class="venture-card-overlay"></div>' +
                 '<div class="venture-card-body">' +
                   statusBadge +
                   '<h3 class="venture-card-name">' + c.name + '</h3>' +
-                  tagline +
-                  desc +
-                  '<span class="venture-card-arrow">Visit venture ' +
-                    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
-                  '</span>' +
+                  '<p class="venture-card-desc">' + descText + '</p>' +
+                  '<div class="venture-card-footer">' +
+                    '<span class="venture-card-link">Visit venture</span>' +
+                    '<span class="venture-card-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>' +
+                  '</div>' +
                 '</div>' +
               '</a>'
             );
@@ -2775,15 +2806,18 @@
           <!-- Venture cards -->
           <div class="ventures-grid" id="venturesGrid">
             <a class="venture-card" href="https://nirogi.com" target="_blank" rel="noopener noreferrer">
-              <div class="venture-card-logo">
-                <div class="venture-initial" style="background: linear-gradient(135deg, #1A6DB5, #0E9AA7); color: white; width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.5rem;">N</div>
+              <div class="venture-card-bg">
+                <div class="vc-fallback"><span>N</span></div>
               </div>
+              <div class="venture-card-overlay"></div>
               <div class="venture-card-body">
                 <span class="venture-card-status active">active</span>
                 <h3 class="venture-card-name">Nirogi</h3>
-                <p class="venture-card-tagline">Healthcare &amp; Pharmacy Delivery Marketplace</p>
-                <p class="venture-card-desc">Connecting patients, nearest local pharmacies, and riders for rapid, reliable medicine delivery across Nepal.</p>
-                <span class="venture-card-arrow">Visit venture <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                <p class="venture-card-desc">Healthcare &amp; Pharmacy Delivery Marketplace. Connecting patients, nearest local pharmacies, and riders for rapid, reliable medicine delivery across Nepal.</p>
+                <div class="venture-card-footer">
+                  <span class="venture-card-link">Visit venture</span>
+                  <span class="venture-card-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
               </div>
             </a>
           </div>

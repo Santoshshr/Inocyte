@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { Upload, X, ExternalLink, Trash2, Pencil, Plus, Building2, Search } from 'lucide-react';
+import { Upload, X, ExternalLink, Trash2, Pencil, Plus, Building2, Search, ArrowRight } from 'lucide-react';
 import { companyService } from '../../services/company.service';
 import { Button } from '../../components/ui/Button';
 import { Modal } from '../../components/ui/Modal';
@@ -409,83 +409,90 @@ export const CompaniesPage: React.FC = () => {
           {companies.map((company) => (
             <div
               key={company.id}
-              className="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col"
+              className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col aspect-[4/3] bg-gray-900"
             >
-              {/* Logo */}
-              <div className="h-36 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center border-b border-gray-100">
-                {company.logo ? (
-                  <img
-                    src={getMediaUrl(company.logo)!}
-                    alt={`${company.name} logo`}
-                    className="max-h-28 max-w-[80%] object-contain"
-                  />
-                ) : (
-                  <Building2 className="h-14 w-14 text-gray-300" />
-                )}
-              </div>
+              {/* Full Background Image */}
+              {company.logo ? (
+                <img
+                  src={getMediaUrl(company.logo)!}
+                  alt={`${company.name} venture`}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : (
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-brand-primary/80 to-gray-900 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                  <span className="text-6xl font-bold text-white/20 uppercase tracking-widest">
+                    {company.name.charAt(0)}
+                  </span>
+                </div>
+              )}
 
-              <div className="flex flex-col flex-1 p-5">
-                {/* Name + Status */}
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="text-base font-semibold text-gray-900 leading-tight">
-                    {company.name}
-                  </h3>
+              {/* Dark Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              {/* Content */}
+              <div className="relative z-10 flex flex-col flex-1 p-5 justify-end">
+                {/* Status Badge */}
+                <div className="mb-3 self-start">
                   <Badge tone={STATUS_TONE[company.status]}>{company.status}</Badge>
                 </div>
 
-                {/* Tagline */}
-                {company.tagline && (
-                  <p className="mt-1 text-sm text-brand-primary font-medium leading-snug">
-                    {company.tagline}
-                  </p>
-                )}
+                {/* Title */}
+                <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight mb-1">
+                  {company.name}
+                </h3>
 
-                {/* Description */}
-                {company.description && (
-                  <p className="mt-2 text-sm text-gray-500 line-clamp-3 leading-relaxed">
-                    {company.description}
-                  </p>
-                )}
+                {/* Description / Tagline */}
+                <p className="text-sm text-gray-300 line-clamp-2 leading-relaxed">
+                  {company.tagline || company.description || 'No description provided.'}
+                </p>
 
-                {/* Industry */}
-                {company.industry_name && (
-                  <span className="mt-3 inline-flex self-start rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
-                    {company.industry_name}
-                  </span>
-                )}
-
-                {/* URL */}
-                {company.website_url && (
-                  <a
-                    href={company.website_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 flex items-center space-x-1 text-xs text-brand-primary hover:underline truncate"
-                  >
-                    <ExternalLink className="h-3 w-3 shrink-0" />
-                    <span className="truncate">{company.website_url}</span>
-                  </a>
-                )}
-
-                {/* Actions */}
-                {isSuperAdmin && (
-                  <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-end space-x-2">
-                    <button
-                      onClick={() => openEdit(company)}
-                      className="flex items-center space-x-1 rounded-md px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 transition-colors"
+                {/* Bottom Actions */}
+                <div className="mt-5 flex items-center justify-between">
+                  {company.website_url ? (
+                    <a
+                      href={company.website_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 text-sm font-medium text-white hover:text-brand-primary transition-colors group/link"
                     >
-                      <Pencil className="h-3.5 w-3.5" />
-                      <span>Edit</span>
-                    </button>
-                    <button
-                      onClick={() => handleDelete(company)}
-                      className="flex items-center space-x-1 rounded-md px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 transition-colors"
-                    >
-                      <Trash2 className="h-3.5 w-3.5" />
-                      <span>Archive</span>
-                    </button>
+                      <span>Visit venture</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  ) : (
+                    <div />
+                  )}
+
+                  <div className="flex items-center space-x-2">
+                    {isSuperAdmin && (
+                      <>
+                        <button
+                          onClick={() => openEdit(company)}
+                          className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                          title="Edit"
+                        >
+                          <Pencil className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(company)}
+                          className="p-2 rounded-full bg-red-500/20 hover:bg-red-500/40 text-red-200 transition-colors"
+                          title="Archive"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </>
+                    )}
+                    {company.website_url && !isSuperAdmin && (
+                      <a
+                        href={company.website_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-colors"
+                      >
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             </div>
           ))}
