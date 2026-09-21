@@ -13,5 +13,5 @@ urlpatterns = [
     path("api/settings/", include("apps.settings_app.urls")),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Always serve media files (no external media CDN configured yet)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

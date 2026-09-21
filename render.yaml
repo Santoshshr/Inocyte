@@ -38,6 +38,9 @@ services:
       - type: rewrite
         source: /api/*
         destination: https://inocyte-web.onrender.com/api/*
+      - type: rewrite
+        source: /media/*
+        destination: https://inocyte-web.onrender.com/media/*
     headers:
       - path: /*
         name: Strict-Transport-Security
