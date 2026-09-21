@@ -34,7 +34,7 @@ services:
         destination: /index.html
       - type: rewrite
         source: /Inocyte_Admin_Panel/*
-        destination: /index.html
+        destination: https://inocyte-web.onrender.com/Inocyte_Admin_Panel/*
       - type: rewrite
         source: /api/*
         destination: https://inocyte-web.onrender.com/api/*
