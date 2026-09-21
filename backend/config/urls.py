@@ -13,5 +13,10 @@ urlpatterns = [
     path("api/settings/", include("apps.settings_app.urls")),
 ]
 
+from django.urls import re_path
+from django.views.static import serve
+
 # Always serve media files (no external media CDN configured yet)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += [
+    re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
+]

@@ -2382,7 +2382,7 @@
     document.addEventListener('DOMContentLoaded', function () {
 
       var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      var API_BASE = isLocal ? 'http://127.0.0.1:8000' : '';
+      var API_BASE = isLocal ? 'http://127.0.0.1:8000' : 'https://inocyte-web.onrender.com';
 
       // ── Render venture cards from API ──────────────────
       (async function loadVentures() {
