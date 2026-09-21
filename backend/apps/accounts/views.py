@@ -1,5 +1,9 @@
+import logging
+
 from django.contrib.auth import get_user_model
 from django.db import DatabaseError
+
+logger = logging.getLogger(__name__)
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -81,11 +85,13 @@ class LoginView(APIView):
         except ValidationError:
             raise
         except (DatabaseError, OSError) as exc:
+            logger.exception("Login failed – database/network error: %s", exc)
             return Response(
                 {"status": "error", "message": "Login is temporarily unavailable. Please try again in a moment."},
                 status=status.HTTP_503_SERVICE_UNAVAILABLE,
             )
-        except Exception:
+        except Exception as exc:
+            logger.exception("Login failed – unexpected error: %s", exc)
             return Response(
                 {"status": "error", "message": "An unexpected error occurred while logging in."},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,

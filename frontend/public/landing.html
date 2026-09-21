@@ -1241,10 +1241,12 @@
       align-items: center;
       margin-top: 48px;
     }
+
     .eco-tree-wrap .hub-node {
       position: relative;
       z-index: 2;
     }
+
     /* SVG sits between hub and cards, absolutely over the gap */
     .eco-svg {
       position: absolute;
@@ -1271,21 +1273,23 @@
     .venture-card {
       display: flex;
       flex-direction: column;
-      background: linear-gradient(160deg, var(--v-a, rgba(59,85,230,.06)) 0%, var(--v-b, rgba(59,85,230,.015)) 45%, #fff 75%);
+      background: linear-gradient(160deg, var(--v-a, rgba(59, 85, 230, .06)) 0%, var(--v-b, rgba(59, 85, 230, .015)) 45%, #fff 75%);
       border: 1.5px solid #e5e8ef;
       border-radius: 18px;
       overflow: hidden;
       text-decoration: none;
       color: inherit;
-      box-shadow: 0 2px 12px rgba(30,40,80,.05);
+      box-shadow: 0 2px 12px rgba(30, 40, 80, .05);
       transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s;
       cursor: pointer;
     }
+
     .venture-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 16px 48px -12px rgba(30,40,80,.18);
+      box-shadow: 0 16px 48px -12px rgba(30, 40, 80, .18);
       border-color: #c2caee;
     }
+
     .venture-card-logo {
       height: 150px;
       display: flex;
@@ -1293,11 +1297,13 @@
       justify-content: center;
       padding: 20px;
     }
+
     .venture-card-logo img {
       max-height: 90px;
       max-width: 80%;
       object-fit: contain;
     }
+
     .venture-card-logo .venture-initial {
       width: 64px;
       height: 64px;
@@ -1311,12 +1317,14 @@
       font-weight: 800;
       font-family: 'Manrope', sans-serif;
     }
+
     .venture-card-body {
       padding: 22px 24px 24px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
+
     .venture-card-status {
       display: inline-flex;
       align-self: flex-start;
@@ -1328,8 +1336,17 @@
       text-transform: uppercase;
       margin-bottom: 10px;
     }
-    .venture-card-status.active   { background: #ecfdf5; color: #059669; }
-    .venture-card-status.upcoming { background: #fffbeb; color: #d97706; }
+
+    .venture-card-status.active {
+      background: #ecfdf5;
+      color: #059669;
+    }
+
+    .venture-card-status.upcoming {
+      background: #fffbeb;
+      color: #d97706;
+    }
+
     .venture-card-name {
       font-size: 1.1rem;
       font-weight: 800;
@@ -1337,12 +1354,14 @@
       font-family: 'Manrope', sans-serif;
       margin-bottom: 4px;
     }
+
     .venture-card-tagline {
       font-size: .83rem;
       font-weight: 600;
       color: #3B55E6;
       margin-bottom: 10px;
     }
+
     .venture-card-desc {
       font-size: .85rem;
       color: #5b6480;
@@ -1353,6 +1372,7 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+
     .venture-card-arrow {
       margin-top: 18px;
       font-size: .82rem;
@@ -1362,9 +1382,11 @@
       align-items: center;
       gap: 5px;
     }
+
     .venture-card-arrow svg {
       transition: transform .2s;
     }
+
     .venture-card:hover .venture-card-arrow svg {
       transform: translateX(4px);
     }
@@ -1377,13 +1399,21 @@
       background-size: 200% 100%;
       animation: shimmer 1.4s infinite;
     }
+
     @keyframes shimmer {
-      0%   { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
+      0% {
+        background-position: 200% 0;
+      }
+
+      100% {
+        background-position: -200% 0;
+      }
     }
 
     @media (max-width: 640px) {
-      .ventures-grid { grid-template-columns: 1fr; }
+      .ventures-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .hub-node {
@@ -1408,8 +1438,13 @@
     }
 
     @media (max-width: 640px) {
-      .hub-mark { height: 24px; }
-      .hub-node { padding: 16px 26px; }
+      .hub-mark {
+        height: 24px;
+      }
+
+      .hub-node {
+        padding: 16px 26px;
+      }
     }
 
     .hub-node::after {
@@ -2162,6 +2197,7 @@
       padding: 80px 0 100px;
       background: #f8f9fc;
     }
+
     .contact-form-wrapper {
       max-width: 680px;
       margin: 48px auto 0;
@@ -2169,18 +2205,21 @@
       border: 1px solid #e5e8ef;
       border-radius: 16px;
       padding: 40px 44px;
-      box-shadow: 0 4px 24px rgba(30,40,80,.06);
+      box-shadow: 0 4px 24px rgba(30, 40, 80, .06);
     }
+
     .inquiry-form .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
+
     .inquiry-form .form-group {
       display: flex;
       flex-direction: column;
       margin-bottom: 20px;
     }
+
     .inquiry-form label {
       font-size: .82rem;
       font-weight: 600;
@@ -2188,10 +2227,12 @@
       margin-bottom: 6px;
       letter-spacing: .01em;
     }
+
     .inquiry-form .required {
       color: #e53e3e;
       margin-left: 2px;
     }
+
     .inquiry-form input,
     .inquiry-form textarea {
       width: 100%;
@@ -2207,16 +2248,22 @@
       resize: none;
       box-sizing: border-box;
     }
+
     .inquiry-form input:focus,
     .inquiry-form textarea:focus {
       border-color: #3B55E6;
-      box-shadow: 0 0 0 3px rgba(59,85,230,.12);
+      box-shadow: 0 0 0 3px rgba(59, 85, 230, .12);
       background: #fff;
     }
-    .inquiry-form textarea { resize: vertical; }
+
+    .inquiry-form textarea {
+      resize: vertical;
+    }
+
     .form-submit-row {
       margin-top: 8px;
     }
+
     .form-submit-btn {
       display: inline-flex;
       align-items: center;
@@ -2224,17 +2271,25 @@
       padding: 13px 32px;
       font-size: .95rem;
     }
+
     .btn-spinner {
       display: none;
       width: 16px;
       height: 16px;
-      border: 2px solid rgba(255,255,255,.4);
+      border: 2px solid rgba(255, 255, 255, .4);
       border-top-color: #fff;
       border-radius: 50%;
       animation: spin .7s linear infinite;
     }
-    .form-submit-btn.loading .btn-spinner { display: inline-block; }
-    .form-submit-btn.loading .btn-text::after { content: "ing..."; }
+
+    .form-submit-btn.loading .btn-spinner {
+      display: inline-block;
+    }
+
+    .form-submit-btn.loading .btn-text::after {
+      content: "ing...";
+    }
+
     .form-feedback {
       padding: 0;
       border-radius: 8px;
@@ -2243,6 +2298,7 @@
       margin-bottom: 0;
       transition: all .3s;
     }
+
     .form-feedback.success {
       background: #f0fdf4;
       border: 1px solid #86efac;
@@ -2250,6 +2306,7 @@
       padding: 12px 16px;
       margin-bottom: 16px;
     }
+
     .form-feedback.error {
       background: #fef2f2;
       border: 1px solid #fca5a5;
@@ -2257,9 +2314,16 @@
       padding: 12px 16px;
       margin-bottom: 16px;
     }
+
     @media (max-width: 600px) {
-      .contact-form-wrapper { padding: 28px 20px; }
-      .inquiry-form .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-form-wrapper {
+        padding: 28px 20px;
+      }
+
+      .inquiry-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
     }
 
     /* ===== FAQ SECTION ===== */
@@ -2269,12 +2333,14 @@
       border-top: 1px solid var(--gray-100);
       border-bottom: 1px solid var(--gray-100);
     }
+
     .faq-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 28px;
       margin-top: 48px;
     }
+
     .faq-card {
       background: var(--white);
       border: 1px solid var(--gray-200);
@@ -2282,22 +2348,26 @@
       padding: 32px 28px;
       transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
     }
+
     .faq-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 24px -10px rgba(10, 27, 61, 0.08);
       border-color: var(--blue-500);
     }
+
     .faq-card h3 {
       font-size: 1.15rem;
       color: var(--navy-900);
       margin-bottom: 12px;
       line-height: 1.35;
     }
+
     .faq-card p {
       color: var(--gray-500);
       font-size: 0.96rem;
       line-height: 1.65;
     }
+
     .footer-heading {
       font-family: 'Manrope', sans-serif;
       font-size: .88rem;
@@ -2318,14 +2388,14 @@
       (async function loadVentures() {
         var grid = document.getElementById('venturesGrid');
         if (!grid) return;
-        requestAnimationFrame(function() { setTimeout(drawEcoLines, 80); });
+        requestAnimationFrame(function () { setTimeout(drawEcoLines, 80); });
         try {
           var res = await fetch((API_BASE ? API_BASE : '') + '/api/companies/public/');
           if (!res.ok) throw new Error('API error');
           var json = await res.json();
           var companies = json.data || json.results || [];
           if (!companies.length) return; // Retain pre-rendered cards
-          grid.innerHTML = companies.map(function(c) {
+          grid.innerHTML = companies.map(function (c) {
             var logoUrl = c.logo && /^https?:\/\//.test(c.logo)
               ? c.logo
               : (c.logo ? (API_BASE ? API_BASE : '') + c.logo : '');
@@ -2342,30 +2412,30 @@
             var url = c.website_url || '#';
             return (
               '<a class="venture-card" href="' + url + '" target="_blank" rel="noopener noreferrer">' +
-                '<div class="venture-card-logo">' + logoHtml + '</div>' +
-                '<div class="venture-card-body">' +
-                  statusBadge +
-                  '<h3 class="venture-card-name">' + c.name + '</h3>' +
-                  tagline +
-                  desc +
-                  '<span class="venture-card-arrow">Visit venture ' +
-                    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
-                  '</span>' +
-                '</div>' +
+              '<div class="venture-card-logo">' + logoHtml + '</div>' +
+              '<div class="venture-card-body">' +
+              statusBadge +
+              '<h3 class="venture-card-name">' + c.name + '</h3>' +
+              tagline +
+              desc +
+              '<span class="venture-card-arrow">Visit venture ' +
+              '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+              '</span>' +
+              '</div>' +
               '</a>'
             );
           }).join('');
 
-          grid.querySelectorAll('.venture-card').forEach(function(card) {
+          grid.querySelectorAll('.venture-card').forEach(function (card) {
             var img = card.querySelector('.venture-card-logo img');
             if (!img) return;
             applyVentureTint(card, img.src);
           });
 
-          requestAnimationFrame(function() { setTimeout(drawEcoLines, 60); });
-        } catch(e) {
+          requestAnimationFrame(function () { setTimeout(drawEcoLines, 60); });
+        } catch (e) {
           // Gracefully retain pre-rendered semantic cards
-          requestAnimationFrame(function() { setTimeout(drawEcoLines, 60); });
+          requestAnimationFrame(function () { setTimeout(drawEcoLines, 60); });
         }
       })();
 
@@ -2373,7 +2443,7 @@
       function applyVentureTint(cardEl, src) {
         var probe = new Image();
         probe.crossOrigin = 'anonymous';
-        probe.onload = function() {
+        probe.onload = function () {
           try {
             var size = 24;
             var canvas = document.createElement('canvas');
@@ -2401,26 +2471,26 @@
         };
         // Cross-origin probe request failed (no CORS headers) — keep default tint,
         // the visible <img> is a separate, unaffected element.
-        probe.onerror = function() {};
+        probe.onerror = function () { };
         probe.src = src;
       }
 
       // ── Draw org-chart connector lines ────────────────
       function drawEcoLines() {
-        var hub   = document.getElementById('ecoHub');
-        var svg   = document.getElementById('ecoSvg');
-        var wrap  = document.getElementById('ecoTreeWrap');
+        var hub = document.getElementById('ecoHub');
+        var svg = document.getElementById('ecoSvg');
+        var wrap = document.getElementById('ecoTreeWrap');
         var cards = document.querySelectorAll('#venturesGrid .venture-card');
         if (!hub || !svg || !wrap || !cards.length) return;
 
         var wrapRect = wrap.getBoundingClientRect();
-        var hubRect  = hub.getBoundingClientRect();
+        var hubRect = hub.getBoundingClientRect();
 
         // Hub bottom-center in wrapper coords
         var hubX = hubRect.left - wrapRect.left + hubRect.width / 2;
         var hubY = hubRect.bottom - wrapRect.top;
 
-        var cardRects = Array.from(cards).map(function(c) { return c.getBoundingClientRect(); });
+        var cardRects = Array.from(cards).map(function (c) { return c.getBoundingClientRect(); });
         var lastCard = cardRects[cardRects.length - 1];
         var svgH = lastCard.top - wrapRect.top + 12;
         svg.setAttribute('height', svgH);
@@ -2479,11 +2549,11 @@
           return;
         }
 
-        var leftX  = cardRects[0].left - wrapRect.left + cardRects[0].width / 2;
+        var leftX = cardRects[0].left - wrapRect.left + cardRects[0].width / 2;
         var rightX = cardRects[cardRects.length - 1].left - wrapRect.left + cardRects[cardRects.length - 1].width / 2;
         line(leftX, midY, rightX, midY);
 
-        cards.forEach(function(card, i) {
+        cards.forEach(function (card, i) {
           var cRect = cardRects[i];
           var cX = cRect.left - wrapRect.left + cRect.width / 2;
           var cY = cRect.top - wrapRect.top;
@@ -2493,14 +2563,14 @@
             d = 'M ' + cX + ' ' + midY + ' L ' + cX + ' ' + cY;
           } else if (cX < hubX) {
             d = 'M ' + hubX + ' ' + midY +
-                ' H ' + (cX + r) +
-                ' Q ' + cX + ' ' + midY + ' ' + cX + ' ' + (midY + r) +
-                ' V ' + cY;
+              ' H ' + (cX + r) +
+              ' Q ' + cX + ' ' + midY + ' ' + cX + ' ' + (midY + r) +
+              ' V ' + cY;
           } else {
             d = 'M ' + hubX + ' ' + midY +
-                ' H ' + (cX - r) +
-                ' Q ' + cX + ' ' + midY + ' ' + cX + ' ' + (midY + r) +
-                ' V ' + cY;
+              ' H ' + (cX - r) +
+              ' Q ' + cX + ' ' + midY + ' ' + cX + ' ' + (midY + r) +
+              ' V ' + cY;
           }
           path.setAttribute('d', d);
           path.setAttribute('fill', 'none');
@@ -2514,7 +2584,7 @@
       }
 
       // Redraw on resize
-      window.addEventListener('resize', function() {
+      window.addEventListener('resize', function () {
         clearTimeout(window._ecoResizeT);
         window._ecoResizeT = setTimeout(drawEcoLines, 120);
       });
@@ -2589,7 +2659,9 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-right">
-        <a href="#ventures" class="btn btn-primary nav-cta" onclick="event.preventDefault();document.getElementById('ventures').scrollIntoView({behavior:'smooth'})">Discover Our Ventures</a>
+        <a href="#ventures" class="btn btn-primary nav-cta"
+          onclick="event.preventDefault();document.getElementById('ventures').scrollIntoView({behavior:'smooth'})">Discover
+          Our Ventures</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu"
           aria-expanded="false"><span></span></button>
       </div>
@@ -2604,7 +2676,9 @@
     <a href="#vision">Vision</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
-    <a href="#ventures" class="btn btn-primary" onclick="event.preventDefault();document.getElementById('ventures').scrollIntoView({behavior:'smooth'})">Discover Our Ventures</a>
+    <a href="#ventures" class="btn btn-primary"
+      onclick="event.preventDefault();document.getElementById('ventures').scrollIntoView({behavior:'smooth'})">Discover
+      Our Ventures</a>
   </div>
 
   <main id="main-content">
@@ -2764,14 +2838,21 @@
           <div class="ventures-grid" id="venturesGrid">
             <a class="venture-card" href="https://nirogi.com" target="_blank" rel="noopener noreferrer">
               <div class="venture-card-logo">
-                <div class="venture-initial" style="background: linear-gradient(135deg, #1A6DB5, #0E9AA7); color: white; width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.5rem;">N</div>
+                <div class="venture-initial"
+                  style="background: linear-gradient(135deg, #1A6DB5, #0E9AA7); color: white; width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.5rem;">
+                  N</div>
               </div>
               <div class="venture-card-body">
                 <span class="venture-card-status active">active</span>
                 <h3 class="venture-card-name">Nirogi</h3>
                 <p class="venture-card-tagline">Healthcare &amp; Pharmacy Delivery Marketplace</p>
-                <p class="venture-card-desc">Connecting patients, nearest local pharmacies, and riders for rapid, reliable medicine delivery across Nepal.</p>
-                <span class="venture-card-arrow">Visit venture <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                <p class="venture-card-desc">Connecting patients, nearest local pharmacies, and riders for rapid,
+                  reliable medicine delivery across Nepal.</p>
+                <span class="venture-card-arrow">Visit venture <svg width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg></span>
               </div>
             </a>
           </div>
@@ -2922,32 +3003,42 @@
       <div class="container">
         <div class="section-head centered reveal">
           <h2 class="section-title">Frequently Asked Questions</h2>
-          <p>Everything you need to know about INOCYTE, our venture studio model, and how we build enduring companies.</p>
+          <p>Everything you need to know about INOCYTE, our venture studio model, and how we build enduring companies.
+          </p>
         </div>
         <div class="faq-grid">
           <div class="faq-card reveal reveal-d1">
             <h3>What is INOCYTE?</h3>
-            <p>INOCYTE is a venture-building company and startup studio that transforms ambitious ideas into independent, scalable businesses. We provide the strategic, technical, and operational backbone to create lasting market value.</p>
+            <p>INOCYTE is a venture-building company and startup studio that transforms ambitious ideas into
+              independent, scalable businesses. We provide the strategic, technical, and operational backbone to create
+              lasting market value.</p>
           </div>
           <div class="faq-card reveal reveal-d2">
             <h3>How does the venture building model work?</h3>
-            <p>Unlike traditional accelerators or passive investors, INOCYTE co-creates companies from the ground up. We validate market problems, architect scalable technology, develop brand strategy, and provide hands-on executive support.</p>
+            <p>Unlike traditional accelerators or passive investors, INOCYTE co-creates companies from the ground up. We
+              validate market problems, architect scalable technology, develop brand strategy, and provide hands-on
+              executive support.</p>
           </div>
           <div class="faq-card reveal reveal-d3">
             <h3>What capabilities does INOCYTE provide?</h3>
-            <p>Our core capabilities span end-to-end venture building, strategic business development, distinctive brand creation, and continuous operational guidance to ensure sustained competitive advantage.</p>
+            <p>Our core capabilities span end-to-end venture building, strategic business development, distinctive brand
+              creation, and continuous operational guidance to ensure sustained competitive advantage.</p>
           </div>
           <div class="faq-card reveal reveal-d1">
             <h3>What is Nirogi, and how does it connect to INOCYTE?</h3>
-            <p>Nirogi is a healthcare technology venture built within the INOCYTE ecosystem. It operates a pharmacy delivery marketplace in Nepal, connecting patients with neighborhood pharmacies and riders for rapid fulfillment.</p>
+            <p>Nirogi is a healthcare technology venture built within the INOCYTE ecosystem. It operates a pharmacy
+              delivery marketplace in Nepal, connecting patients with neighborhood pharmacies and riders for rapid
+              fulfillment.</p>
           </div>
           <div class="faq-card reveal reveal-d2">
             <h3>Who can build or partner with INOCYTE?</h3>
-            <p>We actively collaborate with visionary entrepreneurs, domain experts, strategic enterprises, and forward-thinking investors seeking to build durable, mission-driven companies.</p>
+            <p>We actively collaborate with visionary entrepreneurs, domain experts, strategic enterprises, and
+              forward-thinking investors seeking to build durable, mission-driven companies.</p>
           </div>
           <div class="faq-card reveal reveal-d3">
             <h3>Where is INOCYTE located and how can I get started?</h3>
-            <p>INOCYTE is headquartered in Kathmandu, Nepal, with a global technological perspective. You can connect with our leadership directly via hello@inocyte.com or through our contact form below.</p>
+            <p>INOCYTE is headquartered in Kathmandu, Nepal, with a global technological perspective. You can connect
+              with our leadership directly via hello@inocyte.com or through our contact form below.</p>
           </div>
         </div>
       </div>
@@ -2968,7 +3059,7 @@
         </div>
         <div class="contact-panel reveal reveal-d2">
           <div class="contact-row"><span class="label">Email</span><span class="value">hello@inocyte.com</span></div>
-          <div class="contact-row"><span class="label">Phone</span><span class="value">+977 1-XXXXXXX</span></div>
+          <div class="contact-row"><span class="label">Phone</span><span class="value">+977 9845910341</span></div>
           <div class="contact-row"><span class="label">LinkedIn</span><span
               class="value">linkedin.com/company/inocyte</span></div>
           <div class="contact-row"><span class="label">Location</span><span class="value">Kathmandu, Nepal</span></div>
@@ -2992,7 +3083,8 @@
               </div>
               <div class="form-group">
                 <label for="contactEmail">Email Address <span class="required">*</span></label>
-                <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required autocomplete="email" />
+                <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required
+                  autocomplete="email" />
               </div>
             </div>
             <div class="form-group">
@@ -3001,7 +3093,8 @@
             </div>
             <div class="form-group">
               <label for="contactMessage">Message <span class="required">*</span></label>
-              <textarea id="contactMessage" name="message" rows="5" placeholder="Tell us about your idea, partnership, or inquiry..." required></textarea>
+              <textarea id="contactMessage" name="message" rows="5"
+                placeholder="Tell us about your idea, partnership, or inquiry..." required></textarea>
             </div>
             <div id="formFeedback" class="form-feedback" role="alert" aria-live="polite"></div>
             <div class="form-submit-row">
@@ -3047,7 +3140,8 @@
         <div class="footer-col">
           <h4 class="footer-heading">Social</h4>
           <ul>
-            <li><a href="https://www.linkedin.com/company/inocyte" target="_blank" rel="noopener noreferrer" aria-label="INOCYTE on LinkedIn">LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/company/inocyte" target="_blank" rel="noopener noreferrer"
+                aria-label="INOCYTE on LinkedIn">LinkedIn</a></li>
             <li><a href="#" aria-label="INOCYTE on Instagram">Instagram</a></li>
             <li><a href="#" aria-label="INOCYTE on Facebook">Facebook</a></li>
           </ul>
