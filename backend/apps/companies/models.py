@@ -1,3 +1,5 @@
+import uuid
+
 from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
@@ -56,6 +58,9 @@ class Company(BaseModel):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+            # Same-named ventures would otherwise hit the unique constraint and fail to save.
+            if Company.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
+                self.slug = f"{self.slug}-{uuid.uuid4().hex[:6]}"
         super().save(*args, **kwargs)
 
     def __str__(self):

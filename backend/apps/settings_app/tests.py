@@ -63,3 +63,14 @@ class SettingsPermissionTests(APITestCase):
             "settings": [{"key": "does_not_exist", "value": "x"}]
         }, format="json")
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+class PublicSocialLinksTests(APITestCase):
+    def test_public_returns_only_social_without_auth(self):
+        SiteSetting.objects.filter(key="social_instagram").update(value="https://instagram.com/inocyte")
+        res = self.client.get("/api/settings/public/")
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        data = res.json()["data"]
+        self.assertEqual(data["social_instagram"], "https://instagram.com/inocyte")
+        self.assertEqual(data["social_linkedin"], "https://www.linkedin.com/company/inocyte")
+        self.assertTrue(all(k.startswith("social_") for k in data))

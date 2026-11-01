@@ -59,3 +59,13 @@ class CompanyPermissionTests(APITestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.company.refresh_from_db()
         self.assertEqual(self.company.status, Company.Status.ARCHIVED)
+
+
+class CompanyPersistenceTests(APITestCase):
+    def test_same_name_creates_second_venture_without_touching_first(self):
+        self.client.force_authenticate(make_user("super2@inocyte.test", User.Role.SUPERADMIN))
+        first = self.client.post("/api/companies/", {"name": "Dup Co", "tagline": "one"})
+        second = self.client.post("/api/companies/", {"name": "Dup Co", "tagline": "two"})
+        self.assertEqual(second.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Company.objects.filter(name="Dup Co").count(), 2)
+        self.assertEqual(Company.objects.get(slug="dup-co").tagline, "one")

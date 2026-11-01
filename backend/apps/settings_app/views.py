@@ -1,6 +1,7 @@
 from django.db import transaction
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -16,6 +17,16 @@ class SiteSettingListView(generics.ListAPIView):
     queryset = SiteSetting.objects.all()
     filterset_fields = ["group"]
     pagination_class = None  # Settings are few, no need for pagination
+
+
+class PublicSocialLinksView(APIView):
+    """Social profile URLs for the public website, as {key: url}. Blank means hidden."""
+
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        social = SiteSetting.objects.filter(group=SiteSetting.Group.SOCIAL)
+        return Response({s.key: s.value for s in social})
 
 
 class SiteSettingDetailView(generics.RetrieveUpdateAPIView):

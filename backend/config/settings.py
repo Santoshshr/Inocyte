@@ -11,7 +11,9 @@ DATA_DIR = BASE_DIR / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 ENVIRONMENT = config("NODE_ENV", default="development").lower()
-IS_PRODUCTION = ENVIRONMENT == "production"
+# Render sets RENDER=true. Its disk is wiped on every deploy/restart (free instances
+# restart after ~15 min idle), so a missing NODE_ENV must never fall back to SQLite there.
+IS_PRODUCTION = ENVIRONMENT == "production" or os.environ.get("RENDER") == "true"
 
 SECRET_KEY = config("SECRET_KEY", default=None)
 if IS_PRODUCTION and not SECRET_KEY:
@@ -153,6 +155,10 @@ CORS_ALLOWED_ORIGINS = [origin.strip() for origin in CORS_ALLOWED_ORIGINS if ori
 
 CORS_ALLOW_CREDENTIALS = True
 
+# Local dev servers move between ports (Vite picks the next free one), so don't pin one.
+if not IS_PRODUCTION:
+    CORS_ALLOWED_ORIGIN_REGEXES = [r"^http://(localhost|127\.0\.0\.1):\d+$"]
+
 # ── i18n ──────────────────────────────────────────────
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Kathmandu"
@@ -178,6 +184,8 @@ CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in CSRF_TRUSTED_ORIGINS if ori
 
 # ── Production Security ───────────────────────────────
 if IS_PRODUCTION:
+    # Render terminates TLS at its proxy; without this SSL redirect loops forever.
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
